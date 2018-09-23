@@ -1,0 +1,120 @@
+<html>
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>    
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
+ <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="js/hotel.js"></script>
+  <link rel="stylesheet" href="/css/hotel.css">
+</head>
+<body>
+<nav class="navbar navbar-inverse">
+  <div class="container">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Eirspace</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li ><a href="/home">Home</a></li>
+      <li class="active"><a href="#">Billing</a></li>
+      <li><a href="/contact">Contact Us</a></li>
+    </ul>
+  </div>
+</nav>
+<div class="container" ng-app="myApp" ng-controller="appController">
+<h1>{{heading}}</h1>
+<button class="btn btn-primary" data-toggle="modal" data-target="#add-person" data-backdrop="static" data-keyboard="false">Add New</button>
+
+<!-- Modal -->
+<div id="add-person" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content" id="model-body">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" ng-click="clearPerson()">&times;</button>
+        <h4 class="modal-title">Print New Bill</h4>
+      </div>
+      <div class="modal-body">
+      
+        <div class="form" >
+        	<label>Item:</label>
+        	<input type="text" name="item" id="item" ng-model="Item.item" ng-keyup="complete0(Item.item)"  >
+        	<label >Quantity:</label>
+        	<input id="quantity"   ng-model="Item.quantity">
+            <label>Price:</label>
+        	<input id="price"   ng-model = "Item.quantity * Item.price "  >
+        	<ul class="list-group" id="list">
+				<li class="list-group-item" ng-repeat="itemdata in filteritem" ng-click="fillTextbox0(itemdata)">{{itemdata}}</li>
+			</ul>
+        </div>
+        
+        <!--  <div class="form">
+        	<label>Item:</label>
+        	<input type="text" name="item" id="item" ng-model="item1" ng-keyup="complete1(item1)"  >
+        	<label >Quantity:</label>
+        	<input id="quantity"  ng-model="quan1">
+        	<label>Price:</label>
+        	<input id="price"  ng-model="quan1 * price1">
+        	<ul class="list-group" id="list">
+				<li class="list-group-item" ng-repeat="itemdata1 in filteritem1" ng-click="fillTextbox1(itemdata1)">{{itemdata1}}</li>
+			</ul>
+        </div>
+        
+     <div class="form">
+        	<label>Item:</label>
+        	<input type="text" name="item" id="item" ng-model="item2" ng-keyup="complete2(item2)"  >
+        	<label >Quantity:</label>
+        	<input id="quantity"   ng-model="quan2">
+        	<label>Price:</label>
+        	<input id="price" type="text" ng-model=" quan2 * price2 ">
+        	<ul class="list-group" id="list">
+				<li class="list-group-item" ng-repeat="itemdata2 in filteritem2" ng-click="fillTextbox2(itemdata2)">{{itemdata2}}</li>
+			</ul>
+        </div>
+        -->
+      </div>
+      <div class="modal-footer">
+         <button class="btn btn-primary" ng-click="saveItem()" >Save</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clearPerson()">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+	<table class="table table-hover">
+		<thead>
+			<tr>
+			    <td>Sl. No.</td> 
+				<td>Item</td>
+				<td>Quantity</td>
+				<td>Price</td>
+			</tr>			
+		</thead>
+		<tbody>
+			<tr ng-if="table.length == 0">
+				<td colspan="4" class="text-center"><strong>No Records Found</strong></td>
+			</tr>
+			<tr ng-repeat="x in table track by $index">
+			    <td>{{$index+1}}</td>	
+				<td>{{x.item}}</td>
+				<td>{{x.quantity}}</td>
+				<td>{{x.quantity * x.price}}</td>
+				<td>
+					<button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#add-person" ng-click="editPerson($index)" data-backdrop="static" data-keyboard="false">edit</button>
+					<button class="btn btn-danger btn-xs" ng-click="removeItem(x.item)">remove</button>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<div class="total">
+	<label>Total:</label>
+	<input type="text" name="total" ng-model="total">
+	</div>
+  
+</div>
+
+
+

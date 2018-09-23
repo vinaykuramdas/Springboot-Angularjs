@@ -1,0 +1,28 @@
+body {
+  padding: 20px 0px;
+}
+[ng-model]:hover {
+  outline: dotted 5px rgba(255,0,0,.5);
+  outline-offset: 5px;
+}
+#model-body{
+  width:750px;
+}
+#item{
+ margin-left:10px;
+  
+}
+#quantity{
+  margin-left:5px;
+}
+
+#price{
+  margin-left:5px;
+  
+}
+#list{
+	width:220px;
+}
+.total label{
+	padding-left: 800px;
+}
