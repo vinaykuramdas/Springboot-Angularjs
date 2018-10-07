@@ -9,7 +9,7 @@ app.controller("appController", function($scope, $http,$window) {
 	$scope.quan2 = "";
     $scope.price0 = "";
     $scope.tableout = "";
-    $scope.total = 100;
+    $scope.total =0;
  //   $scope.Item={item:"",quan0:"",price0:""};
     $scope.Item = {};
   
@@ -29,8 +29,6 @@ app.controller("appController", function($scope, $http,$window) {
 			$scope.Item.item=string;
 			$scope.filteritem=null;
 }
-		$scope.total = $scope.table[1];
-        console.log("total"+$scope.total)
 		
        /* $scope.complete1=function(string){
 			
@@ -86,12 +84,15 @@ app.controller("appController", function($scope, $http,$window) {
 			var promise = $http.get('/price/getAllItems').then(function(res){
 				$scope.table = res.data;
 				console.log("table"+$scope.table)
-				
-				 
-				
 			});
 		};
 		
+		var findTotal = function(){
+			$http.get('/price/total').then(function(res){
+				$scope.total = res.data;
+				console.log("total"+$scope.total);
+			});
+		};
 		
 		$scope.saveItem = function(){
 			
@@ -105,6 +106,7 @@ app.controller("appController", function($scope, $http,$window) {
 			}).then(function(res){
 				$scope.Item = {};
 				getAllItems();
+				findTotal();
 			});
 			
 		};

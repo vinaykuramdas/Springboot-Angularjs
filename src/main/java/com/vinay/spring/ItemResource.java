@@ -35,6 +35,12 @@ public class ItemResource {
 		return itemRepository.getItem(item);
 	}
 	
+	@GetMapping("/price/total")
+	@ResponseBody
+	public int findTotal(){
+		return itemRepository.getTotal();
+	}
+	
 
 	@PostMapping("/price/addItem")
 	public ResponseEntity<String> addItem(@RequestBody Item item){

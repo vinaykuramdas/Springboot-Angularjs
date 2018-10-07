@@ -101,7 +101,7 @@
 			    <td>{{$index+1}}</td>	
 				<td>{{x.item}}</td>
 				<td>{{x.quantity}}</td>
-				<td>{{x.quantity * x.price}}</td>
+				<td>{{x.price}}</td>
 				<td>
 					<button class="btn btn-primary btn-xs" data-toggle="modal" data-target="#add-person" ng-click="editPerson($index)" data-backdrop="static" data-keyboard="false">edit</button>
 					<button class="btn btn-danger btn-xs" ng-click="removeItem(x.item)">remove</button>

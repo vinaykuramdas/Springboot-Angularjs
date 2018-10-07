@@ -28,9 +28,14 @@ public class ItemRepository  {
 		return items;
 	}
 	
+	public int getTotal(){
+		String query = " select SUM(price) from bill";
+		return jdbctemp.queryForObject(query,Integer.class );
+	}
+	
 	public int addItem(String item,int quantity,int price){
 		String query = "insert into bill values(?,?,?)";
-		return jdbctemp.update(query, item,quantity,price);
+		return jdbctemp.update(query, item,price*quantity,quantity);
 	}
 	
 	public int deleteItem(String item){

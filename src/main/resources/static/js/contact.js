@@ -2,6 +2,7 @@ var con = angular.module("contact", ["ngRoute"]);
 con.controller("con-controller", function($http,$scope,$window,$log) {
 	
 	$scope.name="";
+	
 	$scope.email="";
 	$scope.message="";
 	
